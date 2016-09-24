@@ -1,7 +1,15 @@
 <?php
 
+//Heroku ClearDB configuration
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
 //Database configuration array
-$dbOptions = array('db_host' => 'localhost', 'db_user' => 'web222-webchat', 'db_pass' => 'wfz!EFrYm', 'db_name' => 'web222-webchat');
+$dbOptions = array('db_host' => $server, 'db_user' => $username, 'db_pass' => $password, 'db_name' => $db);
 
 //Error reporting setup
 ini_set('display_errors', 1);
